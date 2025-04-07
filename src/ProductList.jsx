@@ -252,6 +252,12 @@ function ProductList({ onHomeClick }) {
         e.preventDefault();
         setShowCart(false);
     };
+
+    const handleAddToCart=(product)={
+        
+    }
+
+    const [addedToCart,setAddedtoCart]=useState({});
     return (
         <div>
             <div className="navbar" style={styleObj}>
@@ -274,7 +280,23 @@ function ProductList({ onHomeClick }) {
             </div>
             {!showCart ? (
                 <div className="product-grid">
+                    {plantsArray.map((category,index)=>(
+                        <div key={index}>
+                            <h1><div>{category.category}</div></h1>
+                        <div className='product-list'>
+                            {category.map((plant,plantIndex)=>(
+                                <div className='product-card' key={plantIndex}>
+                                    <img src={plant.image} alt={plant.name}/>
+                                    <div className='product-title'>{plant.name}</div>
+                                    <p><div>{plant.description}</div></p>
+                                    <div className='product-price'>{plant.cost}</div>
+                                    <button className='product-button' onClick={()=>handleAddToCart(plant)}>Add to Cart</button>
+                                </div>
 
+                            ))}
+                        </div>
+                        </div>    
+                    ))}
 
                 </div>
             ) : (
