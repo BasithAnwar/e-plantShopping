@@ -46,8 +46,15 @@ const handleCheckoutShopping = (e) => {
     return total;
   };
 
+  const calculateTotalPlants=()=>{
+    let tot=0;
+    cart.forEach((item)=>tot+=item.quantity);
+    return tot;    
+  }
+
   return (
     <div className="cart-container">
+        <h2 style={{ color: 'black' }}>Total Number of plants: {calculateTotalPlants()}</h2>
       <h2 style={{ color: 'black' }}>Total Cart Amount: ${calculateTotalAmount()}</h2>
       <div>
         {cart.map(item => (
@@ -71,7 +78,7 @@ const handleCheckoutShopping = (e) => {
       <div className="continue_shopping_btn">
         <button className="get-started-button" onClick={(e) => handleContinueShopping(e)}>Continue Shopping</button>
         <br />
-        <button className="get-started-button1">Checkout</button>
+        <button className="get-started-button1" onClick={(e)=>handleCheckoutShopping()}>Checkout</button>
       </div>
     </div>
   );
